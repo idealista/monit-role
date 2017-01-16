@@ -1,0 +1,9 @@
+required_libs:
+  - build-essential
+  - libtool
+  - automake
+  - byacc
+  - flex
+  - zlib1g-dev
+
+monit_url: https://bitbucket.org/tildeslash/monit/downloads/monit-{{ monit_version }}.tar.gz

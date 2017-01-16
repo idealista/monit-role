@@ -4,6 +4,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased]
 
-## [1.0.0] 2017-01-13
+## [1.0.0] 2017-01-16
 ### Added
 - *First release* @jmonterrubio

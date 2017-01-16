@@ -1,0 +1,29 @@
+---
+
+- name: MONIT | Create log directory
+  file:
+    path: "/var/lib/monit"
+    state: directory
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+
+- name: MONIT | Create id directory
+  file:
+    path: "{{ monit_log_dir }}"
+    state: directory
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+
+- name: MONIT | Create conf directory
+  file:
+    path: "{{ monit_conf_dir }}/conf.d/"
+    state: directory
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+
+- name: MONIT | Copy configuration
+  template:
+    src: monitrc.j2
+    dest: "{{ monit_conf_dir }}/monitrc"
+    mode: 0600
+  notify: restart monit
