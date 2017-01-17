@@ -1,0 +1,57 @@
+---
+
+- name: MONIT | Ensure monit group
+  group:
+    name: "{{ monit_group }}"
+
+- name: MONIT | Ensure monit user
+  user:
+    name: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+    home: /bin/false
+    createhome: yes
+
+- name: MONIT | Installing dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ required_libs }}"
+  tags:
+    skip_ansible_lint
+
+- name: MONIT | Check monit version
+  command: monit --version
+  register: monit_check
+  changed_when: false
+  ignore_errors: true
+
+- name: MONIT | Download monit
+  get_url:
+    url: "{{ monit_url }}"
+    dest: /tmp
+  when: 'monit_check|failed or "{{ monit_version }}" not in monit_check.stdout'
+
+- name: MONIT | Untar monit
+  unarchive:
+    copy: no
+    src: /tmp/monit-{{ monit_version }}.tar.gz
+    dest: /tmp
+  when: 'monit_check|failed or "{{ monit_version }}" not in monit_check.stdout'
+
+- name: MONIT | Install monit
+  command: "chdir=/tmp/monit-{{ monit_version }} {{item}}"
+  with_items:
+    - ./configure
+        --without-ssl
+        --without-pam
+    - make
+    - make install
+  when: 'monit_check|failed or "{{ monit_version }}" not in monit_check.stdout'
+  notify: restart monit
+
+- name: MONIT | Copy Daemon script
+  template:
+    src: monit.service.j2
+    dest: /lib/systemd/system/monit.service
+    mode: 0644
+  notify: restart monit

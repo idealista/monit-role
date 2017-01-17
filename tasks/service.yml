@@ -1,0 +1,8 @@
+---
+
+- name: MONIT | Configuring service
+  systemd:
+    name: monit
+    state: "{{ monit_service_state }}"
+    enabled: "{{ monit_service_enabled }}"
+    daemon_reload: yes

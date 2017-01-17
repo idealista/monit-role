@@ -1,0 +1,20 @@
+# start on boot
+monit_service_enabled: 'yes'
+# current state: started, stopped
+monit_service_state: started
+
+monit_user: monit
+monit_group: monit
+
+monit_version: 5.20.0
+monit_log_dir: /var/log/monit
+monit_conf_dir: /etc/monit
+monit_lib_dir: /var/lib/monit
+
+monit_check_interval: 120
+
+mail_server: mail.server
+mail_recipients: test@recipients.es
+monit_admin_port: 2882
+monit_admin_user: admin
+monit_admin_pass: admin
