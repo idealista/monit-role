@@ -9,6 +9,7 @@ monit_group: monit
 monit_version: 5.20.0
 monit_log_dir: /var/log/monit
 monit_conf_dir: /etc/monit
+monit_lib_dir: /var/lib/monit
 
 monit_check_interval: 120
 

@@ -28,7 +28,8 @@
 ## Monit instance. The id is generated and stored on first Monit start. By
 ## default the file is placed in $HOME/.monit.id.
 #
-  set idfile /var/lib/monit/id
+  set idfile {{ monit_lib_dir }}/id
+  set pidfile {{ monit_lib_dir }}/monit.pid
 
 ## Set the location of the Monit state file which saves monitoring states
 ## on each cycle. By default the file is placed in $HOME/.monit.state. If
@@ -36,7 +37,7 @@
 ## the monitoring state across reboots. If it is on temporary filesystem, the
 ## state will be lost on reboot which may be convenient in some situations.
 #
-  set statefile /var/lib/monit/state
+  set statefile {{ monit_lib_dir }}/state
 
 ## Set the list of mail servers for alert delivery. Multiple servers may be
 ## specified using a comma separator. If the first mail server fails, Monit
@@ -54,7 +55,7 @@
 ## available in the back end filesystem).
 #
   set eventqueue
-      basedir /var/lib/monit/events # set the base directory where events will be stored
+      basedir {{ monit_lib_dir }}/events # set the base directory where events will be stored
       slots 100                     # optionally limit the queue size
 
 ## Send status and events to M/Monit (for more informations about M/Monit
