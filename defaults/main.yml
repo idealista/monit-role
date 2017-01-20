@@ -1,5 +1,5 @@
 # start on boot
-monit_service_enabled: 'yes'
+monit_service_enabled: True
 # current state: started, stopped
 monit_service_state: started
 
