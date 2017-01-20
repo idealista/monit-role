@@ -1,0 +1,13 @@
+{{ monit_log_dir }}/monit.log {
+    rotate 7
+    weekly
+    minsize 1M
+    missingok
+    create 644 {{ monit_user }} {{ monit_group }}
+    notifempty
+    compress
+    delaycompress
+    postrotate
+        [ -f {{ monit_lib_dir }}/monit.pid ] && systemctl reload monit.service > /dev/null
+    endscript
+}
