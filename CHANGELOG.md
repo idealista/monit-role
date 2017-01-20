@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased]
 
 ## [1.0.1](https://github.com/idealista-tech/monit-role/tree/1.0.1) (2017-01-20)
-[Full Changelog](https://github.com/idealista-tech/monit-role/compare/v1.0.0...v1.0.1)
+[Full Changelog](https://github.com/idealista-tech/monit-role/compare/1.0.0...1.0.1)
 ### Added
 - *[#2](https://github.com/idealista-tech/monit-role/issues/2) Add logrotate* @jmonterrubio
 
