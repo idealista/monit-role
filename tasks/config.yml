@@ -35,3 +35,11 @@
     owner: "{{ monit_user }}"
     group: "{{ monit_group }}"
   notify: restart monit
+
+- name: MONIT | Copy logrotate config
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/monit
+    mode: 0644
+    owner: root
+    group: root
