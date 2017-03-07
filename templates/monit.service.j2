@@ -9,7 +9,11 @@ ExecStart=/usr/local/bin/monit -I -c {{ monit_conf_dir }}/monitrc
 ExecStop=/usr/local/bin/monit -c {{ monit_conf_dir }}/monitrc quit
 ExecReload=/usr/local/bin/monit -c {{ monit_conf_dir }}/monitrc reload
 Restart=on-abnormal
+{% if monit_enable_superuser %}
+User=root
+{% else %}
 User={{ monit_user }}
+{% endif %}
 
 [Install]
 WantedBy=multi-user.target
