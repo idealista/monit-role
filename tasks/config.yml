@@ -32,8 +32,8 @@
     src: monitrc.j2
     dest: "{{ monit_conf_dir }}/monitrc"
     mode: 0600
-    owner: "{{ monit_user }}"
-    group: "{{ monit_group }}"
+    owner: "{{ monit_user if not monit_enable_superuser else 'root' }}"
+    group: "{{ monit_group if not monit_enable_superuser else 'root' }}"
   notify: restart monit
 
 - name: MONIT | Copy logrotate config
@@ -43,3 +43,35 @@
     mode: 0644
     owner: root
     group: root
+
+- name: MONIT | Copy monitor files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ monit_conf_dir }}/monitrc.d/{{ item | basename }}"
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ monit_extra_servers_path }}/*"
+
+- name: MONIT | Copy monitor templates
+  template:
+    src: "{{ item }}"
+    dest: "{{ monit_conf_dir }}/monitrc.d/{{ item | basename }}"
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ monit_extra_servers_template_path }}/*"
+
+- name: MONIT | Enable monitor
+  file:
+    src: "{{ monit_conf_dir }}/monitrc.d/{{ item | basename }}"
+    dest: "{{ monit_conf_dir }}/conf.d/{{ item | basename }}"
+    state: link
+    owner: "{{ monit_user }}"
+    group: "{{ monit_group }}"
+  with_fileglob:
+    - "{{ monit_extra_servers_path }}/*"
+    - "{{ monit_extra_servers_template_path }}/*"
+  notify: reload monit
