@@ -8,6 +8,7 @@ monit_version: 5.20.0
 # Owner
 monit_user: monit
 monit_group: monit
+monit_enable_superuser: false
 
 # start on boot
 monit_service_enabled: True

@@ -32,8 +32,8 @@
     src: monitrc.j2
     dest: "{{ monit_conf_dir }}/monitrc"
     mode: 0600
-    owner: "{{ monit_user }}"
-    group: "{{ monit_group }}"
+    owner: "{{ monit_user if not monit_enable_superuser else 'root' }}"
+    group: "{{ monit_group if not monit_enable_superuser else 'root' }}"
   notify: restart monit
 
 - name: MONIT | Copy logrotate config
