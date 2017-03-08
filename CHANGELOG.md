@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista-tech/monit-role/tree/develop)
 ### Added
 - *[#7](https://github.com/idealista-tech/monit-role/issues/7) Enable root* @jmonterrubio
+- *[#8](https://github.com/idealista-tech/monit-role/issues/8) Add monitors* @jmonterrubio
 
 ## [1.0.1](https://github.com/idealista-tech/monit-role/tree/1.0.1) (2017-01-20)
 [Full Changelog](https://github.com/idealista-tech/monit-role/compare/1.0.0...1.0.1)

@@ -1,0 +1,6 @@
+check process my_app2 with pidfile /var/run/my_app2/my_app2.pid
+  start program = "/bin/systemctl start my_app2.service"
+  stop program  = "/bin/systemctl stop my_app2.service"
+  if TOTALMEMORY > 80% for 5 cycles then alert
+  if TOTALMEMORY > 85% for 2 cycles then restart
+  if 5 restarts within 5 cycles then timeout

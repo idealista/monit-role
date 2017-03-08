@@ -5,3 +5,9 @@
     name: monit
     state: restarted
   when: monit_service_state != 'stopped'
+
+- name: reload monit
+  systemd:
+    name: monit
+    state: reloaded
+  when: monit_service_state != 'stopped'

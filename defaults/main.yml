@@ -19,6 +19,8 @@ monit_service_state: started
 monit_log_dir: /var/log/monit
 monit_conf_dir: /etc/monit
 monit_lib_dir: /var/lib/monit
+monit_extra_servers_path: "{{ playbook_dir }}/files/monit/servers"
+monit_extra_servers_template_path: "{{ playbook_dir }}/templates/monit/servers"
 
 # MAIL
 mail_server: mail.server
