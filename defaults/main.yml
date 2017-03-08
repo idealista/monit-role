@@ -1,20 +1,35 @@
+---
+## General
+
+monit_version: 5.20.0
+
+## Service options
+
+# Owner
+monit_user: monit
+monit_group: monit
+
 # start on boot
 monit_service_enabled: True
 # current state: started, stopped
 monit_service_state: started
 
-monit_user: monit
-monit_group: monit
-
-monit_version: 5.20.0
+# Files & Paths
 monit_log_dir: /var/log/monit
 monit_conf_dir: /etc/monit
 monit_lib_dir: /var/lib/monit
+monit_extra_servers_path: "{{ playbook_dir }}/files/monit/servers"
+monit_extra_servers_template_path: "{{ playbook_dir }}/templates/monit/servers"
 
-monit_check_interval: 120
-
+# MAIL
 mail_server: mail.server
 mail_recipients: test@recipients.es
+
+# Security
 monit_admin_port: 2882
 monit_admin_user: admin
 monit_admin_pass: admin
+
+
+# Miscellaneous
+monit_check_interval: 120

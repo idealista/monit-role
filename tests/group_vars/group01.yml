@@ -1,0 +1,6 @@
+monit_extra_servers_path: "{{ playbook_dir }}/files"
+monit_extra_servers_template_path: "{{ playbook_dir }}/templates"
+
+monit_enable_superuser: true
+
+application_name: my_app
