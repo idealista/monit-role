@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista-tech/monit-role/tree/develop)
+
+## [1.1.0](https://github.com/idealista-tech/monit-role/tree/1.1.0) (2017-03-08)
+[Full Changelog](https://github.com/idealista-tech/monit-role/compare/1.0.1...1.1.0)
 ### Added
 - *[#7](https://github.com/idealista-tech/monit-role/issues/7) Enable root* @jmonterrubio
 - *[#8](https://github.com/idealista-tech/monit-role/issues/8) Add monitors* @jmonterrubio
