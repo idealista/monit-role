@@ -49,6 +49,11 @@
   when: 'monit_check|failed or "{{ monit_version }}" not in monit_check.stdout'
   notify: restart monit
 
+- name: MONIT | Remove old upstart daemon script
+  file:
+    dest: /etc/init.d/monit
+    state: absent
+
 - name: MONIT | Copy Daemon script
   template:
     src: monit.service.j2
