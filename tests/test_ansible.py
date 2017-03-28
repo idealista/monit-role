@@ -11,19 +11,28 @@ def AnsibleVars(Ansible):
     return Ansible("include_vars", "tests/group_vars/group01.yml")["ansible_facts"]
 
 
+@pytest.fixture()
+def Hostname(TestinfraBackend):
+    return TestinfraBackend.get_hostname()
+
+
 def test_monit_user(User, Group, AnsibleDefaults):
     assert User(AnsibleDefaults["monit_user"]).exists
     assert Group(AnsibleDefaults["monit_group"]).exists
     assert User(AnsibleDefaults["monit_user"]).group == AnsibleDefaults["monit_group"]
 
 
-def test_monit_conf(File, User, Group, AnsibleDefaults):
+def test_monit_conf(File, User, Group, AnsibleDefaults, Hostname):
     conf_dir = File(AnsibleDefaults["monit_conf_dir"])
     conf_file = File(AnsibleDefaults["monit_conf_dir"] + "/monitrc")
     assert conf_dir.exists
     assert conf_dir.is_directory
-    assert conf_dir.user == AnsibleDefaults["monit_user"]
-    assert conf_dir.group == AnsibleDefaults["monit_group"]
+    if Hostname == "monit-old":
+        assert conf_dir.user == 'root'
+        assert conf_dir.group == 'root'
+    if Hostname == "monit":
+        assert conf_dir.user == AnsibleDefaults["monit_user"]
+        assert conf_dir.group == AnsibleDefaults["monit_group"]
     assert conf_file.exists
     assert conf_file.is_file
 

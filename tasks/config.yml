@@ -6,7 +6,6 @@
     state: directory
     owner: "{{ monit_user }}"
     group: "{{ monit_group }}"
-    recurse: yes
 
 - name: MONIT | Create id directory
   file:
@@ -14,7 +13,6 @@
     state: directory
     owner: "{{ monit_user }}"
     group: "{{ monit_group }}"
-    recurse: yes
 
 - name: MONIT | Create conf directories
   file:
