@@ -1,0 +1,6 @@
+mail_server: localhost
+mail_recipients: tests@test.com
+monit_admin_port: 2882
+monit_admin_user: admin
+monit_admin_pass: admin
+monit_log_dir: /var/log/monit

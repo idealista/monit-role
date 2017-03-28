@@ -1,4 +1,14 @@
 ---
+- hosts: monit-old
+  pre_tasks:
+    - name: MONIT | Check monit version
+      command: monit --version
+      register: monit_check
+      changed_when: false
+      ignore_errors: true
+  roles:
+    - role: monit-old
+      when: monit_check|failed
 
 - hosts: all
   roles:
